@@ -18,12 +18,13 @@ if ($conn->connect_error) {
 
 
 
-$sql = "SELECT title, discription, img FROM news";
+$sql = "SELECT title, discription, img, date_news FROM news";
 $result = $conn->query($sql);
 
 $news = array();
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+        $row['discription'] = nl2br($row['discription']);
         $news[] = $row;
     }
 }

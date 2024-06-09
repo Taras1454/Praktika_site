@@ -9,7 +9,7 @@ import News from  './components/News.vue'
      <Links />
      
     <nav>
-        <a href="#news">Новини</a>
+        <a href="#news-item">Новини</a>
         <a href="#schedule">Розклад матчів</a>
         <a href="#standings">Таблиця чемпіонату</a>
         <a href="#teams">Команди</a>
@@ -21,10 +21,7 @@ import News from  './components/News.vue'
 
     
     <div class="container">
-        <div id="news" class="section">
-            <h2>Новини</h2>
-            <p>Будьте в курсі останніх подій, трансферів та важливих рішень, що впливають на перебіг сезону.</p>
-        </div>
+        
         <div id="schedule" class="section">
             <h2>Розклад матчів</h2>
             <p>Дізнайтеся, коли і де відбудуться наступні ігри, а також переглядайте результати попередніх матчів.</p>

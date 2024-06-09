@@ -6,9 +6,9 @@
         <div v-for="newsItem in news" :key="newsItem.title" class="news-item">
           <img :src="newsItem.img" alt="News Image" class="news-img">
           <div class="news-info">
-            <p v-html="newsItem.description"></p>
+            <h5>{{ newsItem.date_news }}</h5>
             <h3>{{ newsItem.title }}</h3>
-            <p>{{ newsItem.discription }}</p>
+            <p v-html="newsItem.discription"></p>
             
           </div>
         </div>
@@ -41,9 +41,7 @@
             this.loading = false;
           });
       },
-      getImgPath(img) {
-      return img.replace(/\\/g, '/'); // Заміна зворотніх слешів на прямі
-    }
+      
     }
   }
   </script>
@@ -60,6 +58,7 @@
     align-items: center;
     margin-bottom: 20px;
     padding: 20px;
+    align-items: flex-start;
   }
   
   .news-img {
@@ -67,7 +66,13 @@
     height: 150px;
     object-fit: cover;
     margin-right: 20px;
+   
     
+  }
+  .news-info h5{
+    font-size:13px;
+    margin: 0 0 5px;
+    color:rgb(3, 26, 96);
   }
   
   .news-info h3 {
@@ -77,6 +82,9 @@
   .news-info p {
     margin: 0;
     text-align:justify;
+  }
+  h2{
+    text-align: center;
   }
   </style>
   
