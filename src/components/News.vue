@@ -3,15 +3,16 @@
       <h2>Новини</h2>
       <div v-if="loading">Завантаження...</div>
       <div v-else>
-        <div v-for="newsItem in news" :key="newsItem.title" class="news-item">
+        
+          <div v-for="(newsItem, index) in paginatedNews" :key="index" class="news-item">
           <img :src="newsItem.img" alt="News Image" class="news-img">
           <div class="news-info">
-            <h5>{{ newsItem.date_news }}</h5>
+            <h5>{{ formatDate(newsItem.date_news) }}</h5>
             <h3>{{ newsItem.title }}</h3>
             <p v-html="newsItem.discription"></p>
-            
           </div>
         </div>
+        <button v-if="moreToShow" @click="showMore" class="show-more">Показати ще</button>
       </div>
     </div>
   </template>
@@ -23,12 +24,22 @@
     data() {
       return {
         news: [],
-        loading: true
+        loading: true,
+        itemsToShow: 3 
       };
     },
+    computed: {
+    paginatedNews() {
+      return this.news.slice(0, this.itemsToShow);
+    },
+    moreToShow() {
+      return this.itemsToShow < this.news.length;
+    }
+  },
     created() {
       this.fetchNews();
     },
+   
     methods: {
       fetchNews() {
         axios.get('http://localhost/praktika/php/getNews.php')
@@ -41,6 +52,13 @@
             this.loading = false;
           });
       },
+      showMore() {
+      this.itemsToShow += 3; // збільшити кількість відображених новин на 3
+    },
+    formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('uk-UA', options);
+    }
       
     }
   }
@@ -66,7 +84,7 @@
     height: 150px;
     object-fit: cover;
     margin-right: 20px;
-   
+    aspect-ratio: 1 / 1;
     
   }
   .news-info h5{
@@ -86,5 +104,20 @@
   h2{
     text-align: center;
   }
+  .show-more {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.show-more:hover {
+  background-color: #0056b3;
+}
   </style>
   
