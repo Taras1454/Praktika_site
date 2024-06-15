@@ -11,6 +11,7 @@
             <h3>{{ newsItem.title }}</h3>
             <p v-html="newsItem.discription"></p>
           </div>
+          
         </div>
         <button v-if="moreToShow" @click="showMore" class="show-more">Показати ще</button>
       </div>
@@ -53,12 +54,13 @@
           });
       },
       showMore() {
-      this.itemsToShow += 3; // збільшити кількість відображених новин на 3
+      this.itemsToShow += 3; 
     },
     formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString('uk-UA', options);
     }
+    
       
     }
   }

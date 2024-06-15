@@ -7,7 +7,7 @@ import axios from 'axios';
 
 <template>
 <header>
-    <img id=main_icon src="/src/assets/seria_a_icon.jfif" type="icon">
+    
     <h1>
       Сайти клубів
     </h1>
@@ -77,13 +77,7 @@ import axios from 'axios';
 </template>
 
 <style>
-        #main_icon{
-          height:47px;
-          width:38px;
-          top:64px;
-          position:absolute;
-          right:1043px;
-        }
+       
         h1{
           position: absolute;
           

@@ -6,47 +6,28 @@ import News from  './components/News.vue'
 <template>
   <body>
      
-     <Links />
+    <Links />
      
-    <nav>
-        <a href="#news-item">Новини</a>
-        <a href="#schedule">Розклад матчів</a>
-        <a href="#standings">Таблиця чемпіонату</a>
-        <a href="#teams">Команди</a>
-        <a href="#media">Медіа</a>
-        <a href="#fans">Спільнота</a>
+   
+     <nav>
+    <img id=main_icon src="/src/assets/seria_a_icon.jfif" type="icon">
+      <router-link to="/home">Головна</router-link>
+      <router-link to="/news">Новини</router-link>
+      <router-link to="#schedule">Розклад матчів</router-link>
+      <router-link to="#standings">Таблиця чемпіонату</router-link>
+      <router-link to="#teams">Команди</router-link>
+      <router-link to="#media">Медіа</router-link>
+      <router-link to="#fans">Спільнота</router-link>
     </nav>
 
-    <News />
+    <router-view></router-view>
 
     
-    <div class="container">
-        
-        <div id="schedule" class="section">
-            <h2>Розклад матчів</h2>
-            <p>Дізнайтеся, коли і де відбудуться наступні ігри, а також переглядайте результати попередніх матчів.</p>
-        </div>
-        <div id="standings" class="section">
-            <h2>Таблиця чемпіонату</h2>
-            <p>Слідкуйте за змінами в таблиці чемпіонату та дізнавайтеся, хто лідирує в гонці за титул.</p>
-        </div>
-        <div id="teams" class="section">
-            <h2>Команди</h2>
-            <p>Вивчайте детальні профілі улюблених команд, їхню статистику, досягнення та цікаві факти з кар'єри.</p>
-        </div>
-      
-        <div id="media" class="section">
-            <h2>Медіа</h2>
-            <p>Насолоджуйтесь найяскравішими моментами матчів, переглядайте найкращі голи та красиві знімки з полів.</p>
-        </div>
-        <div id="fans" class="section">
-            <h2>Спільнота</h2>
-            <p>Приєднуйтесь до обговорень, беріть участь у конкурсах та взаємодійте з іншими фанатами футболу.</p>
-        </div>
-    </div>
     <footer>
         <p>&copy; 2024 Італійська Футбольна Ліга. Всі права захищено.</p>
     </footer>
+    
+    
 </body>
 </template>
 
@@ -56,6 +37,7 @@ body {
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            
         }
         header {
             background-color: #2c3e50;
@@ -67,7 +49,9 @@ body {
         nav {
             display: flex;
             justify-content: center;
+            align-items: center;
             background-color: #34495e;
+          
         }
         nav a {
             color: #fff;
@@ -78,24 +62,22 @@ body {
         nav a:hover {
             background-color: #2c3e50;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-        .section {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        
         footer {
             background-color: #2c3e50;
             color: #fff;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
+            
             width: 100%;
             bottom: 0;
+            z-index: 0; 
         }
+        #main_icon{
+          height:60px;
+          width:50px;
+          position:relative;
+          left:-27px;
+         
+        } 
 </style>
