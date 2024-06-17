@@ -1,6 +1,7 @@
 <script setup>
 import Links from './components/Links.vue'
 import News from  './components/News.vue'
+import Register from './components/Register.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import News from  './components/News.vue'
       <router-link to="#teams">Команди</router-link>
       <router-link to="#media">Медіа</router-link>
       <router-link to="#fans">Спільнота</router-link>
+      <router-link to="/register">Реєстрація</router-link>
     </nav>
 
     <router-view></router-view>
