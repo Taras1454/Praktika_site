@@ -1,19 +1,24 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-$servername = "localhost";
+
+$servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "mydatabase";
+$dbname = "ft_site";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$check=file_get_contents("php://input");
+var_dump($check);
+$data = json_decode($check);
 
-$data = json_decode(file_get_contents("php://input"));
+var_dump($data);
 
 if (isset($data->username) && isset($data->email) && isset($data->password)) {
     $username = $data->username;
