@@ -2,6 +2,8 @@
 import Links from './components/Links.vue'
 import News from  './components/News.vue'
 import Register from './components/Register.vue';
+import Clubs from './components/Clubs.vue'
+import ChampionshipTable from './components/ChampionshipTable.vue';
 </script>
 
 <template>
@@ -15,8 +17,8 @@ import Register from './components/Register.vue';
       <router-link to="/home">Головна</router-link>
       <router-link to="/news">Новини</router-link>
       <router-link to="#schedule">Розклад матчів</router-link>
-      <router-link to="#standings">Таблиця чемпіонату</router-link>
-      <router-link to="#teams">Команди</router-link>
+      <router-link to="/table">Таблиця чемпіонату</router-link>
+      <router-link to="/clubs">Команди</router-link>
       <router-link to="#media">Медіа</router-link>
       <router-link to="#fans">Спільнота</router-link>
       <router-link to="/register">Реєстрація</router-link>
