@@ -4,6 +4,7 @@ import News from  './components/News.vue'
 import Register from './components/Register.vue';
 import Clubs from './components/Clubs.vue'
 import ChampionshipTable from './components/ChampionshipTable.vue';
+import Matchs from './components/Matchs.vue'
 </script>
 
 <template>
@@ -16,7 +17,7 @@ import ChampionshipTable from './components/ChampionshipTable.vue';
     <img id=main_icon src="/src/assets/seria_a_icon.jfif" type="icon">
       <router-link to="/home">Головна</router-link>
       <router-link to="/news">Новини</router-link>
-      <router-link to="#schedule">Розклад матчів</router-link>
+      <router-link to="/matchs">Матчі</router-link>
       <router-link to="/table">Таблиця чемпіонату</router-link>
       <router-link to="/clubs">Команди</router-link>
       <router-link to="#media">Медіа</router-link>
