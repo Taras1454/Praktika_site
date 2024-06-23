@@ -1,7 +1,7 @@
 <template>
   <div class="championship">
-    <h2>Таблиця чемпіонату</h2>
-    <table>
+    <h2 style="text-align: center;">Таблиця чемпіонату</h2>
+    <table class="center-table">
       <thead>
         <tr>
           <th>Місце</th>
@@ -14,7 +14,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(club, index) in sortedChampionshipData" :key="club.id_club">
+        <tr v-for="(club, index) in sortedChampionshipData" :key="club.id_club"
+            :class="{
+              'champions-league': index < 5,
+              'europa-league': index >= 5 && index < 7,
+              'conference-league': index === 7,
+              'relegation': index >= sortedChampionshipData.length - 3
+            }">
           <td>{{ index + 1 }}</td>
           <td class="club-cell">
             <div class="club-info">
@@ -30,6 +36,16 @@
         </tr>
       </tbody>
     </table>
+    <div class="legend">
+      <div class="legend-item champions-league"></div>
+      <div class="legend-text">Команди, що вийшли до Ліги Чемпіонів (перші 5 місць)</div>
+      <div class="legend-item europa-league"></div>
+      <div class="legend-text">Команди, що вийшли до Ліги Європи (6-7 місця)</div>
+      <div class="legend-item conference-league"></div>
+      <div class="legend-text">Команда, що вийшла до Ліги Конференцій (8 місце)</div>
+      <div class="legend-item relegation"></div>
+      <div class="legend-text">Команди, що вилетіли з ліги (останні 3 місця)</div>
+    </div>
   </div>
 </template>
 
@@ -73,16 +89,19 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
+  text-align: center; /* Вирівнюємо заголовок і таблицю по центру */
 }
 
-table {
+.center-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  max-width: 800px; /* Зменшуємо максимальну ширину таблиці */
+  margin: 0 auto; /* Центруємо таблицю по горизонталі */
 }
 
 th, td {
-  padding: 10px;
+  padding: 8px; /* Зменшуємо внутрішні відступи */
   text-align: center;
   border: 1px solid #ddd;
 }
@@ -101,7 +120,7 @@ th {
 }
 
 .club-logo {
-  width: 30px;
+  width: 25px; /* Зменшуємо розмір логотипу */
   height: auto;
   margin-right: 10px;
 }
@@ -110,5 +129,40 @@ th {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.legend-item {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+.legend-text {
+  margin-bottom: 10px;
+}
+
+/* Стилі для кольорів фонів рядків таблиці */
+.champions-league {
+  background-color: #e6f7ff; /* Синій фон для Ліги Чемпіонів */
+}
+
+.europa-league {
+  background-color: #ffe6cc; /* Оранжевий фон для Ліги Європи */
+}
+
+.conference-league {
+  background-color: #d9ead3; /* Жовтий фон для Ліги Конференцій */
+}
+
+.relegation {
+  background-color: #ffe6e6; /* Червоний фон для вилітних команд */
 }
 </style>
