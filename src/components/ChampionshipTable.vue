@@ -5,28 +5,27 @@
       <thead>
         <tr>
           <th>Місце</th>
+          <th>Логотип</th>
           <th>Клуб</th>
-          <th>І</th>
-          <th>В</th>
-          <th>Н</th>
-          <th>П</th>
-          <th>Голи</th>
           <th>Очки</th>
+          <th>Перемоги</th>
+          <th>Поразки</th>
+          <th>Нічиї</th>
+          <th>Голи</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(club, index) in championshipData" :key="club.club_name">
+        <tr v-for="(club, index) in championshipData" :key="club.id_club">
           <td>{{ index + 1 }}</td>
-          <td class="club-info">
+          <td class="logo-cell">
             <img :src="club.club_logo" alt="Club Logo" class="club-logo">
-            {{ club.club_name }}
           </td>
-          <td>{{ club.played }}</td>
-          <td>{{ club.wins }}</td>
-          <td>{{ club.draws }}</td>
-          <td>{{ club.loses }}</td>
-          <td>{{ club.goals }}</td>
+          <td>{{ club.club_name }}</td>
           <td>{{ club.points }}</td>
+          <td>{{ club.wins }}</td>
+          <td>{{ club.loses }}</td>
+          <td>{{ club.draws }}</td>
+          <td>{{ club.goals }}</td>
         </tr>
       </tbody>
     </table>
@@ -67,14 +66,12 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #fff;
 }
 
 th, td {
@@ -85,19 +82,20 @@ th, td {
 
 th {
   background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.club-info {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .club-logo {
   width: 30px; 
   height: auto;
-  margin-right: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-cell {
+  width: 50px;
+}
+
+td, th {
   vertical-align: middle;
 }
 </style>
