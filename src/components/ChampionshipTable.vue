@@ -5,7 +5,6 @@
       <thead>
         <tr>
           <th>Місце</th>
-          <th>Логотип</th>
           <th>Клуб</th>
           <th>Очки</th>
           <th>Перемоги</th>
@@ -15,12 +14,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(club, index) in championshipData" :key="club.id_club">
+        <tr v-for="(club, index) in sortedChampionshipData" :key="club.id_club">
           <td>{{ index + 1 }}</td>
-          <td class="logo-cell">
-            <img :src="club.club_logo" alt="Club Logo" class="club-logo">
+          <td class="club-cell">
+            <div class="club-info">
+              <img :src="club.club_logo" alt="Club Logo" class="club-logo">
+              <span class="club-name">{{ club.club_name }}</span>
+            </div>
           </td>
-          <td>{{ club.club_name }}</td>
           <td>{{ club.points }}</td>
           <td>{{ club.wins }}</td>
           <td>{{ club.loses }}</td>
@@ -41,6 +42,12 @@ export default {
       championshipData: [],
       loading: true
     };
+  },
+  computed: {
+    sortedChampionshipData() {
+      // Сортуємо дані за кількістю очок (points) у спадаючому порядку
+      return this.championshipData.sort((a, b) => b.points - a.points);
+    }
   },
   created() {
     this.fetchChampionship();
@@ -84,18 +91,24 @@ th {
   background-color: #f2f2f2;
 }
 
+.club-cell {
+  text-align: left;
+}
+
+.club-info {
+  display: flex;
+  align-items: center;
+}
+
 .club-logo {
-  width: 30px; 
+  width: 30px;
   height: auto;
-  display: block;
-  margin: 0 auto;
+  margin-right: 10px;
 }
 
-.logo-cell {
-  width: 50px;
-}
-
-td, th {
-  vertical-align: middle;
+.club-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
