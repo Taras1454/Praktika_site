@@ -20,20 +20,20 @@ if (isset($data['email']) && isset($data['password'])) {
     $email = $data['email'];
     $password = $data['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+    $stmt = $conn->prepare("SELECT name, email FROM users WHERE email = ? AND password = ?");
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt->bind_result($username, $email);
 
-    if ($result->num_rows > 0) {
-        echo json_encode(["message" => "Login successful"]);
+    if ($stmt->fetch()) {
+        echo json_encode(["success" => true, "username" => $username, "email" => $email]);
     } else {
-        echo json_encode(["message" => "Invalid email or password"]);
+        echo json_encode(["success" => false, "message" => "Неправильний email або пароль"]);
     }
 
     $stmt->close();
 } else {
-    echo json_encode(["message" => "Invalid input"]);
+    echo json_encode(["success" => false, "message" => "Невірні дані"]);
 }
 
 $conn->close();

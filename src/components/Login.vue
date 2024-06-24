@@ -37,7 +37,14 @@
           password: this.password
         })
         .then(response => {
-          this.message = response.data.message;
+          if (response.data.success) {
+            localStorage.setItem('username', response.data.username);
+            localStorage.setItem('email', this.email);
+            this.$router.push('/profile');
+            this.$emit('login'); // Оповіщуємо головний компонент про успішний вхід
+          } else {
+            this.message = response.data.message;
+          }
         })
         .catch(error => {
           this.message = 'Помилка при вході';
