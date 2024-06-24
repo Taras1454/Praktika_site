@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
+
 $host = '127.0.0.1'; 
 $db = 'ft_site'; 
 $user = 'root'; 
@@ -26,6 +27,7 @@ $sql = "SELECT
             gs.goals,
             gs.position,
             gs.national AS national_image,
+            gs.photo AS player_photo,
             c.logo AS club_logo
         FROM 
             goal_scorers gs
@@ -36,3 +38,4 @@ $stmt = $pdo->query($sql);
 $data = $stmt->fetchAll();
 
 echo json_encode($data);
+?>

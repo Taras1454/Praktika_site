@@ -6,20 +6,26 @@
           <tr>
             <th>№</th>
             <th>Гравець</th>
-            <th>Голи</th>
-            <th>Позиція</th>
-            <th>Національність</th>
             <th>Клуб</th>
+            <th>Позиція</th>
+            <th>Голи</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(scorer, index) in sortedScorers" :key="index">
             <td>{{ index + 1 }}</td>
-            <td>{{ scorer.name }}</td>
-            <td>{{ scorer.goals }}</td>
-            <td>{{ scorer.position }}</td>
-            <td><img :src="scorer.national_image" alt="National Flag" class="national-flag"></td>
+            <td class="player-cell">
+              <div class="player-info">
+                <img :src="scorer.player_photo" alt="Player Photo" class="player-photo">
+                <div class="player-details">
+                    <img :src="scorer.national_image" alt="National Flag" class="national-flag">
+                  <span>{{ scorer.name }}</span>
+                </div>
+              </div>
+            </td>
             <td><img :src="scorer.club_logo" alt="Club Logo" class="club-logo"></td>
+            <td>{{ scorer.position }}</td>
+            <td><b>{{ scorer.goals }}</b></td>
           </tr>
         </tbody>
       </table>
@@ -86,7 +92,35 @@
     background-color: #f2f2f2;
   }
   
-  .national-flag, .club-logo {
+  .player-cell {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-photo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .national-flag {
+    width: 30px;
+    height: auto;
+    
+  }
+  
+  .player-details {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .club-logo {
     width: 30px;
     height: auto;
   }
