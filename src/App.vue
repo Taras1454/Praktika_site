@@ -6,6 +6,7 @@ import Clubs from './components/Clubs.vue'
 import ChampionshipTable from './components/ChampionshipTable.vue'
 import Matchs from './components/Matchs.vue'
 import Goalscorers from './components/Goalscorers.vue'
+import Login from './components/Login.vue';
 </script>
 
 <template>
