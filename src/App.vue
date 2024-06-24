@@ -1,10 +1,11 @@
 <script setup>
 import Links from './components/Links.vue'
 import News from  './components/News.vue'
-import Register from './components/Register.vue';
+import Register from './components/Register.vue'
 import Clubs from './components/Clubs.vue'
-import ChampionshipTable from './components/ChampionshipTable.vue';
+import ChampionshipTable from './components/ChampionshipTable.vue'
 import Matchs from './components/Matchs.vue'
+import Goalscorers from './components/Goalscorers.vue'
 </script>
 
 <template>
@@ -20,7 +21,7 @@ import Matchs from './components/Matchs.vue'
       <router-link to="/matchs">Матчі</router-link>
       <router-link to="/table">Таблиця чемпіонату</router-link>
       <router-link to="/clubs">Команди</router-link>
-      <router-link to="#media">Медіа</router-link>
+      <router-link to="/goalscorers">Голи</router-link>
       <router-link to="#fans">Спільнота</router-link>
       <router-link to="/register">Реєстрація</router-link>
     </nav>

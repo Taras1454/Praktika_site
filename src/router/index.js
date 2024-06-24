@@ -2,15 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router';
 import News from '../components/News.vue';
 import Home from '../components/Home.vue'; 
 import Register from '../components/Register.vue';
-import Clubs from '../components/Clubs.vue'
+import Clubs from '../components/Clubs.vue';
 import ChampionshipTable from '../components/ChampionshipTable.vue';
+import Matchs from '../components/Matchs.vue';
+import Goalscorers from '../components/Goalscorers.vue';
 
 const routes = [
     { path: '/home', component: Home },
     { path: '/news', component: News },
     { path: '/register', component: Register },
     { path: '/clubs' , component: Clubs},
-    { path: '/table' , component: ChampionshipTable}
+    { path: '/table' , component: ChampionshipTable},
+    { path: '/matchs' , component: Matchs},
+    { path: '/goalscorers' , component: Goalscorers}
   ];
 
 const router = createRouter({
