@@ -1,9 +1,14 @@
 <template>
   <div class="goalscorers">
+    
     <div class="header">
       <h2>Таблиця бомбардирів</h2>
-      <button @click="goToAssistants">Таблиця асистентів</button>
+      <button @click="goToAssistants">
+        <img id="arrow_r" src="/src/assets/right_arrow.png" type="icon">
+        <span class="tooltip-text">Таблиця асистентів</span>
+      </button>
     </div>
+    
     <table>
       <thead>
         <tr>
@@ -37,7 +42,6 @@
 
 <script>
 import axios from 'axios';
-import { useRouter } from 'vue-router';
 
 export default {
   data() {
@@ -68,8 +72,7 @@ export default {
         });
     },
     goToAssistants() {
-      const router = useRouter();
-      router.push('/assistants'); // Змініть '/assistants' на шлях до вашого компонента таблиці асистентів
+      this.$router.push('/assistants'); // Використовуйте this.$router
     }
   },
 };
@@ -88,7 +91,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
+
+
 
 table {
   width: 100%;
@@ -139,15 +145,43 @@ th {
 }
 
 button {
-  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
+  background-color: transparent;
+  position: relative;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #b9c5d1;
 }
+
+#arrow_r {
+  width: 50px;
+}
+
+.tooltip-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #555;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+button:hover .tooltip-text {
+  display: block;
+}
+
+h2 {
+  margin: 0 auto; 
+  
+}
+
 </style>
