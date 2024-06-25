@@ -11,6 +11,7 @@ import Matchs from './components/Matchs.vue';
 import Goalscorers from './components/Goalscorers.vue';
 import Login from './components/Login.vue';
 import Profile from './components/Profile.vue';
+import Assistants from './components/Assistants.vue';
 
 const isLoggedIn = ref(!!localStorage.getItem('email'));
 const router = useRouter();
@@ -41,8 +42,8 @@ watch(
         <router-link to="/matchs">Матчі</router-link>
         <router-link to="/table">Таблиця чемпіонату</router-link>
         <router-link to="/clubs">Команди</router-link>
-        <router-link to="/goalscorers">Голи</router-link>
-        <router-link to="#fans">Спільнота</router-link>
+        <router-link to="/goalscorers">Статистика</router-link>
+        <router-link to="/assistants">Спільн</router-link>
         <router-link to="/login" v-if="!isLoggedIn">Вхід</router-link>
         <router-link to="/profile" v-if="isLoggedIn">Кабінет</router-link>
         

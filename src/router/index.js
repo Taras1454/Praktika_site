@@ -8,6 +8,7 @@ import Matchs from '../components/Matchs.vue';
 import Goalscorers from '../components/Goalscorers.vue';
 import Login from '../components/Login.vue';
 import Profile from '../components/Profile.vue';
+import Assistants from '../components/Assistants.vue';
 
 const routes = [
     { path: '/home', component: Home },
@@ -19,7 +20,8 @@ const routes = [
     { path: '/goalscorers' , component: Goalscorers},
     { path: '/login', component: Login },
     { path: '/profile', component: Profile },
-  { path: '/', redirect: '/login' }
+    { path: '/', redirect: '/login' },
+    { path: '/assistants', component: Assistants}
   ];
 
 const router = createRouter({
