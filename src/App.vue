@@ -43,7 +43,7 @@ watch(
         <router-link to="/table">Таблиця чемпіонату</router-link>
         <router-link to="/clubs">Команди</router-link>
         <router-link to="/goalscorers">Статистика</router-link>
-        <router-link to="#fans">Спільн</router-link>
+        <router-link to="#fans">Медіа</router-link>
         <router-link to="/login" v-if="!isLoggedIn">Вхід</router-link>
         <router-link to="/profile" v-if="isLoggedIn">Кабінет</router-link>
         
