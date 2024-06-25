@@ -45,7 +45,7 @@
       fetchNews() {
         axios.get('http://localhost/praktika/php/getNews.php')
           .then(response => {
-            this.news = response.data;
+            this.news = response.data.sort((a, b) => new Date(b.date_news) - new Date(a.date_news));
             this.loading = false;
           })
           .catch(error => {

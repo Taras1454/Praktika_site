@@ -6,7 +6,7 @@
         <tr>
           <th>Місце</th>
           <th>Клуб</th>
-          <th>Очки</th>
+          <th class="points-header">Очки</th>
           <th>Перемоги</th>
           <th>Поразки</th>
           <th>Нічиї</th>
@@ -28,7 +28,7 @@
               <span class="club-name">{{ club.club_name }}</span>
             </div>
           </td>
-          <td>{{ club.points }}</td>
+          <td class="points">{{ club.points }}</td>
           <td>{{ club.wins }}</td>
           <td>{{ club.loses }}</td>
           <td>{{ club.draws }}</td>
@@ -89,19 +89,19 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
-  text-align: center; /* Вирівнюємо заголовок і таблицю по центру */
+  text-align: center; 
 }
 
 .center-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  max-width: 800px; /* Зменшуємо максимальну ширину таблиці */
-  margin: 0 auto; /* Центруємо таблицю по горизонталі */
+  max-width: 800px; 
+  margin: 0 auto; 
 }
 
 th, td {
-  padding: 8px; /* Зменшуємо внутрішні відступи */
+  padding: 8px; 
   text-align: center;
   border: 1px solid #ddd;
 }
@@ -120,7 +120,7 @@ th {
 }
 
 .club-logo {
-  width: 25px; /* Зменшуємо розмір логотипу */
+  width: 25px; 
   height: auto;
   margin-right: 10px;
 }
@@ -149,7 +149,14 @@ th {
   margin-bottom: 10px;
 }
 
-/* Стилі для кольорів фонів рядків таблиці */
+.points-header {
+  font-weight: bold;
+}
+
+.points {
+  font-weight: bold;
+}
+
 .champions-league {
   background-color: #e6f7ff; /* Синій фон для Ліги Чемпіонів */
 }
@@ -159,7 +166,7 @@ th {
 }
 
 .conference-league {
-  background-color: #d9ead3; /* Жовтий фон для Ліги Конференцій */
+  background-color: #d9ead3; /* Зелений фон для Ліги Конференцій */
 }
 
 .relegation {
