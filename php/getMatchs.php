@@ -24,8 +24,13 @@ try {
 $sql = "SELECT 
             m.tour,
             m.home_team_goals,
+            m.home_team_shots,
+            m.home_team_passion,
             m.away_team_goals,
+            m.away_team_shots,
+            m.away_team_passion,
             m.date,
+            hc.stadium, -- Отримання стадіону з таблиці clubs для домашньої команди
             hc.name_team AS home_team_name,
             hc.logo AS home_team_logo,
             ac.name_team AS away_team_name,

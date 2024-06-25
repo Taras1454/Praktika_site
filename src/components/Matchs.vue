@@ -2,23 +2,53 @@
   <div class="matches">
     <div v-for="(matches, tour) in groupedMatches" :key="tour" class="tour">
       <h2>Тур {{ tour }}</h2>
-      <div v-for="match in matches" :key="match.id" class="match">
+      <div v-for="match in matches" :key="match.id" class="match" @click="openMatchDetails(match)">
         <div class="team">
           <img :src="match.home_team_logo" alt="Home Team Logo" class="team-logo">
           <span class="team-name">{{ match.home_team_name }}</span>
-          
         </div>
         <div class="vs">
-          <span class="goals">{{ match.home_team_goals }}</span>
-          :
-          <span class="goals">{{ match.away_team_goals }}</span>
+          <span class="goals">{{ match.home_team_goals }} : {{ match.away_team_goals }}</span>
         </div>
         <div class="team">
-         
           <span class="team-name">{{ match.away_team_name }}</span>
           <img :src="match.away_team_logo" alt="Away Team Logo" class="team-logo">
         </div>
         <div class="date">{{ formatDate(match.date) }}</div>
+      </div>
+    </div>
+
+    <!-- Модальне вікно -->
+    <div v-if="selectedMatch" class="modal">
+      <div class="modal-content">
+        <span class="close" @click="closeModal">&times;</span>
+        <div class="teams-container">
+          <div class="team-details">
+            <img :src="selectedMatch.home_team_logo" alt="Home Team Logo" class="team-logo">
+            <h3>{{ selectedMatch.home_team_name }}</h3>
+            <p>{{ selectedMatch.home_team_passion }}%</p>
+          </div>
+          <div class="stats">
+            <h2>{{ selectedMatch.home_team_goals }} : {{ selectedMatch.away_team_goals }}</h2>
+            <p class="stats-label">Володіння м'ячем:</p>
+            
+          </div>
+          <div class="team-details">
+            <img :src="selectedMatch.away_team_logo" alt="Away Team Logo" class="team-logo">
+            <h3>{{ selectedMatch.away_team_name }}</h3>
+            <p>{{ selectedMatch.away_team_passion }}%</p>
+          </div>
+        </div>
+        <div class="additional-info">
+          <p class="stats-label">Удари:</p>
+          <div class="shots-container">
+            <div>{{ selectedMatch.home_team_shots }}</div>
+            <div>{{ selectedMatch.away_team_shots }}</div>
+          </div>
+        </div>
+        <div class="stadium">
+          <h3>Стадіон: {{ selectedMatch.stadium }}</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -31,6 +61,7 @@ export default {
   data() {
     return {
       matches: [],
+      selectedMatch: null,
     };
   },
   computed: {
@@ -74,6 +105,12 @@ export default {
     formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+    openMatchDetails(match) {
+      this.selectedMatch = match;
+    },
+    closeModal() {
+      this.selectedMatch = null;
     }
   },
 };
@@ -98,6 +135,7 @@ export default {
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
 
 .team {
@@ -119,7 +157,7 @@ export default {
 .goals {
   flex-basis: 30px;
   text-align: center;
-  font-weight: bold; /* Робимо голи жирним шрифтом */
+  font-weight: bold; 
   flex-grow: 1;
   font-size: larger;
 }
@@ -135,5 +173,69 @@ export default {
 .date {
   font-size: 0.9em;
   color: #666;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.teams-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.team-details {
+  text-align: center;
+}
+
+.stats {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.additional-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.shots-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-label {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stadium {
+  text-align: center;
 }
 </style>
