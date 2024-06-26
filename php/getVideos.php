@@ -21,15 +21,9 @@ try {
     exit;
 }
 
-$sql = "SELECT href FROM videos";
-
+$sql = "SELECT href, tour FROM videos ORDER BY tour ASC";
 $stmt = $pdo->query($sql);
 $data = $stmt->fetchAll();
-
-$data = array_map(function($item) {
-    $item['href'] = str_replace('\\', '/', $item['href']);
-    return $item;
-}, $data);
 
 echo json_encode($data);
 ?>
