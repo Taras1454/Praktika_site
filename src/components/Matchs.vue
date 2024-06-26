@@ -1,6 +1,6 @@
 <template>
   <div class="matches">
-    <div v-for="(matches, tour) in groupedMatches" :key="tour" class="tour">
+    <div v-for="(matches, tour) in visibleGroupedMatches" :key="tour" class="tour">
       <h2>Тур {{ tour }}</h2>
       <div v-for="match in matches" :key="match.id" class="match" @click="openMatchDetails(match)">
         <div class="team">
@@ -17,6 +17,7 @@
         <div class="date">{{ formatDate(match.date) }}</div>
       </div>
     </div>
+    <button v-if="visibleTourCount < Object.keys(groupedMatches).length" @click="showMoreTours">Показати ще</button>
 
     <!-- Модальне вікно -->
     <div v-if="selectedMatch" class="modal">
@@ -90,6 +91,7 @@ export default {
     return {
       matches: [],
       selectedMatch: null,
+      visibleTourCount: 3, // Спочатку показуємо 3 тура
     };
   },
   computed: {
@@ -115,6 +117,15 @@ export default {
       });
 
       return sortedGroups;
+    },
+    visibleGroupedMatches() {
+      
+      const visibleTours = Object.keys(this.groupedMatches).slice(0, this.visibleTourCount);
+      const visibleGroups = {};
+      visibleTours.forEach(tour => {
+        visibleGroups[tour] = this.groupedMatches[tour];
+      });
+      return visibleGroups;
     },
   },
   created() {
@@ -142,8 +153,11 @@ export default {
     },
     calculateWidth(homeValue, awayValue) {
       const total = homeValue + awayValue;
-      if (total === 0) return 50; // якщо немає значень, повертаємо 50%
+      if (total === 0) return 50; 
       return (homeValue / total) * 100;
+    },
+    showMoreTours() {
+      this.visibleTourCount += 3; 
     }
   },
 };
@@ -189,7 +203,7 @@ export default {
 }
 
 .team-name {
-  min-width: 120px; /* Фіксована ширина для назв команд */
+  min-width: 120px; 
   text-align: left;
 }
 
@@ -212,6 +226,22 @@ export default {
 .date {
   font-size: 0.9em;
   color: #666;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 .modal {
@@ -252,7 +282,7 @@ export default {
 .team-details {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Вирівнювання по центру вертикально */
+  align-items: center; 
 }
 
 .team-logo-window {
@@ -263,7 +293,7 @@ export default {
 
 .team-details h3 {
   font-size: 1.4em;
-  margin: 0; /* Видалення зовнішніх відступів */
+  margin: 0; 
 }
 
 .stats {
@@ -309,11 +339,11 @@ export default {
 }
 
 .bar.home {
-  background-color: #4caf50; /* зелений для домашньої команди */
+  background-color: #4caf50; 
 }
 
 .bar.away {
-  background-color: #f44336; /* червоний для гостьової команди */
+  background-color: #f44336; 
   justify-content: flex-end;
 }
 

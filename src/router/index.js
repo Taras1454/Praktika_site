@@ -9,6 +9,7 @@ import Goalscorers from '../components/Goalscorers.vue';
 import Login from '../components/Login.vue';
 import Profile from '../components/Profile.vue';
 import Assistants from '../components/Assistants.vue';
+import Media from '../components/Media.vue';
 
 const routes = [
     { path: '/home', component: Home },
@@ -21,7 +22,8 @@ const routes = [
     { path: '/login', component: Login },
     { path: '/profile', component: Profile },
     { path: '/', redirect: '/login' },
-    { path: '/assistants', component: Assistants}
+    { path: '/assistants', component: Assistants},
+    { path: '/media', component: Media}
   ];
 
 const router = createRouter({

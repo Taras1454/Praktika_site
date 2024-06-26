@@ -12,6 +12,7 @@ import Goalscorers from './components/Goalscorers.vue';
 import Login from './components/Login.vue';
 import Profile from './components/Profile.vue';
 import Assistants from './components/Assistants.vue';
+import Media from './components/Media.vue';
 
 const isLoggedIn = ref(!!localStorage.getItem('email'));
 const router = useRouter();
@@ -43,10 +44,9 @@ watch(
         <router-link to="/table">Таблиця чемпіонату</router-link>
         <router-link to="/clubs">Команди</router-link>
         <router-link to="/goalscorers">Статистика</router-link>
-        <router-link to="#fans">Медіа</router-link>
+        <router-link to="/media">Медіа</router-link>
         <router-link to="/login" v-if="!isLoggedIn">Вхід</router-link>
         <router-link to="/profile" v-if="isLoggedIn">Кабінет</router-link>
-        
       </nav>
       <router-view></router-view>
     </div>
@@ -76,6 +76,7 @@ nav {
   justify-content: center;
   align-items: center;
   background-color: #34495e;
+  height: 60px; /* Додано висоту, щоб відповідати висоті іконки */
 }
 
 nav a {
@@ -100,10 +101,10 @@ footer {
 }
 
 #main_icon {
-  height: 60px;
-  width: 50px;
-  position: relative;
-  left: -27px;
+  height: 60px; 
+  width: 56px; 
+  margin-right: 20px; 
+  align-self: stretch; 
 }
 
 button {
