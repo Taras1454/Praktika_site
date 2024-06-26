@@ -65,7 +65,7 @@ export default {
 }
 
 .club-item {
-  width: calc(50% - 10px); /* Половина ширини з відступом між елементами */
+  width: calc(50% - 10px); 
   margin-bottom: 20px;
   padding: 20px;
   border: 1px solid #ccc;

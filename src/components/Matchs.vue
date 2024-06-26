@@ -29,9 +29,9 @@
             <h3>{{ selectedMatch.home_team_name }}</h3>
           </div>
           <div class="stats">
-            <div class="date">{{ formatDate(selectedMatch.date) }}</div> <!-- Дата вище рахунку -->
+            <div class="date">{{ formatDate(selectedMatch.date) }}</div> 
             <h2>{{ selectedMatch.home_team_goals }} : {{ selectedMatch.away_team_goals }}</h2>
-            <p class="status">ЗАВЕРШЕНО</p> <!-- Напис ЗАВЕРШЕНО -->
+            <p class="status">ЗАВЕРШЕНО</p> 
           </div>
           <div class="team-details">
             <img :src="selectedMatch.away_team_logo" alt="Away Team Logo" class="team-logo-window">
@@ -91,13 +91,13 @@ export default {
     return {
       matches: [],
       selectedMatch: null,
-      visibleTourCount: 3, // Спочатку показуємо 3 тура
+      visibleTourCount: 3, 
     };
   },
   computed: {
     groupedMatches() {
       const grouped = this.matches.reduce((groups, match) => {
-        const tour = match.tour || 'Невизначений тур'; // Додано значення за замовчуванням
+        const tour = match.tour || 'Невизначений тур'; 
         if (!groups[tour]) {
           groups[tour] = [];
         }
@@ -302,7 +302,7 @@ button:hover {
 }
 
 .stats .date {
-  margin-bottom: 10px; /* Відстань між датою і рахунком */
+  margin-bottom: 10px; 
 }
 
 .status {

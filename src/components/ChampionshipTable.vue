@@ -38,13 +38,13 @@
     </table>
     <div class="legend">
       <div class="legend-item champions-league"></div>
-      <div class="legend-text">Команди, що вийшли до Ліги Чемпіонів (перші 5 місць)</div>
+      <div class="legend-text">Команди, що вийшли до Ліги Чемпіонів</div>
       <div class="legend-item europa-league"></div>
-      <div class="legend-text">Команди, що вийшли до Ліги Європи (6-7 місця)</div>
+      <div class="legend-text">Команди, що вийшли до Ліги Європи</div>
       <div class="legend-item conference-league"></div>
-      <div class="legend-text">Команда, що вийшла до Ліги Конференцій (8 місце)</div>
+      <div class="legend-text">Команда, що вийшла до Ліги Конференцій</div>
       <div class="legend-item relegation"></div>
-      <div class="legend-text">Команди, що вилетіли з ліги (останні 3 місця)</div>
+      <div class="legend-text">Команди, що вилетіли з ліги</div>
     </div>
   </div>
 </template>
@@ -158,18 +158,18 @@ th {
 }
 
 .champions-league {
-  background-color: #e6f7ff; /* Синій фон для Ліги Чемпіонів */
+  background-color: #e6f7ff; 
 }
 
 .europa-league {
-  background-color: #ffe6cc; /* Оранжевий фон для Ліги Європи */
+  background-color: #ffe6cc; 
 }
 
 .conference-league {
-  background-color: #d9ead3; /* Зелений фон для Ліги Конференцій */
+  background-color: #d9ead3; 
 }
 
 .relegation {
-  background-color: #ffe6e6; /* Червоний фон для вилітних команд */
+  background-color: #ffe6e6; 
 }
 </style>

@@ -72,7 +72,7 @@ export default {
         });
     },
     goToAssistants() {
-      this.$router.push('/assistants'); // Використовуйте this.$router
+      this.$router.push('/assistants'); 
     }
   },
 };
