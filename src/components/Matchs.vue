@@ -24,26 +24,54 @@
         <span class="close" @click="closeModal">&times;</span>
         <div class="teams-container">
           <div class="team-details">
-            <img :src="selectedMatch.home_team_logo" alt="Home Team Logo" class="team-logo">
+            <img :src="selectedMatch.home_team_logo" alt="Home Team Logo" class="team-logo-window">
             <h3>{{ selectedMatch.home_team_name }}</h3>
-            <p>{{ selectedMatch.home_team_passion }}%</p>
           </div>
           <div class="stats">
+            <div class="date">{{ formatDate(selectedMatch.date) }}</div> <!-- Дата вище рахунку -->
             <h2>{{ selectedMatch.home_team_goals }} : {{ selectedMatch.away_team_goals }}</h2>
-            <p class="stats-label">Володіння м'ячем:</p>
-            
+            <p class="status">ЗАВЕРШЕНО</p> <!-- Напис ЗАВЕРШЕНО -->
           </div>
           <div class="team-details">
-            <img :src="selectedMatch.away_team_logo" alt="Away Team Logo" class="team-logo">
+            <img :src="selectedMatch.away_team_logo" alt="Away Team Logo" class="team-logo-window">
             <h3>{{ selectedMatch.away_team_name }}</h3>
-            <p>{{ selectedMatch.away_team_passion }}%</p>
           </div>
         </div>
         <div class="additional-info">
-          <p class="stats-label">Удари:</p>
-          <div class="shots-container">
-            <div>{{ selectedMatch.home_team_shots }}</div>
-            <div>{{ selectedMatch.away_team_shots }}</div>
+          <div class="blok_stats">
+            <p class="stats-label">Володіння м'ячем:</p>
+            <div class="stats_content">
+              <div class="bar home" :style="{ width: selectedMatch.home_team_passion + '%' }">{{ selectedMatch.home_team_passion }}%</div>
+              <div class="bar away" :style="{ width: selectedMatch.away_team_passion + '%' }">{{ selectedMatch.away_team_passion }}%</div>
+            </div>
+          </div>
+          <div class="blok_stats">
+            <p class="stats-label">Удари:</p>
+            <div class="stats_content">
+              <div class="bar home" :style="{ width: calculateWidth(selectedMatch.home_team_shots, selectedMatch.away_team_shots) + '%' }">{{ selectedMatch.home_team_shots }}</div>
+              <div class="bar away" :style="{ width: calculateWidth(selectedMatch.away_team_shots, selectedMatch.home_team_shots) + '%' }">{{ selectedMatch.away_team_shots }}</div>
+            </div>
+          </div>
+          <div class="blok_stats">
+            <p class="stats-label">Удари в ствір:</p>
+            <div class="stats_content">
+              <div class="bar home" :style="{ width: calculateWidth(selectedMatch.home_team_shots_target, selectedMatch.away_team_shots_target) + '%' }">{{ selectedMatch.home_team_shots_target }}</div>
+              <div class="bar away" :style="{ width: calculateWidth(selectedMatch.away_team_shots_target, selectedMatch.home_team_shots_target) + '%' }">{{ selectedMatch.away_team_shots_target }}</div>
+            </div>
+          </div>
+          <div class="blok_stats">
+            <p class="stats-label">Штрафні удари:</p>
+            <div class="stats_content">
+              <div class="bar home" :style="{ width: calculateWidth(selectedMatch.home_team_free_kick, selectedMatch.away_team_free_kick) + '%' }">{{ selectedMatch.home_team_free_kick }}</div>
+              <div class="bar away" :style="{ width: calculateWidth(selectedMatch.away_team_free_kick, selectedMatch.home_team_free_kick) + '%' }">{{ selectedMatch.away_team_free_kick }}</div>
+            </div>
+          </div>
+          <div class="blok_stats">
+            <p class="stats-label">Сейви воротаря:</p>
+            <div class="stats_content">
+              <div class="bar home" :style="{ width: calculateWidth(selectedMatch.home_team_saves, selectedMatch.away_team_saves) + '%' }">{{ selectedMatch.home_team_saves }}</div>
+              <div class="bar away" :style="{ width: calculateWidth(selectedMatch.away_team_saves, selectedMatch.home_team_saves) + '%' }">{{ selectedMatch.away_team_saves }}</div>
+            </div>
           </div>
         </div>
         <div class="stadium">
@@ -111,6 +139,11 @@ export default {
     },
     closeModal() {
       this.selectedMatch = null;
+    },
+    calculateWidth(homeValue, awayValue) {
+      const total = homeValue + awayValue;
+      if (total === 0) return 50; // якщо немає значень, повертаємо 50%
+      return (homeValue / total) * 100;
     }
   },
 };
@@ -145,6 +178,12 @@ export default {
 
 .team-logo {
   width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.team-logo-window {
+  width: 55px;
   height: auto;
   margin-right: 10px;
 }
@@ -211,7 +250,20 @@ export default {
 }
 
 .team-details {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Вирівнювання по центру вертикально */
+}
+
+.team-logo-window {
+  width: 55px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.team-details h3 {
+  font-size: 1.4em;
+  margin: 0; /* Видалення зовнішніх відступів */
 }
 
 .stats {
@@ -219,23 +271,67 @@ export default {
   flex-grow: 1;
 }
 
+.stats .date {
+  margin-bottom: 10px; /* Відстань між датою і рахунком */
+}
+
+.status {
+  font-size: 1.4em;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
 .additional-info {
   text-align: center;
   margin-top: 20px;
 }
 
-.shots-container {
+.blok_stats {
+  margin-bottom: 10px;
+}
+
+.stats_content {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+  position: relative;
+  font-size: large;
+  
+}
+
+.bar {
+  height: 20px;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.bar.home {
+  background-color: #4caf50; /* зелений для домашньої команди */
+}
+
+.bar.away {
+  background-color: #f44336; /* червоний для гостьової команди */
+  justify-content: flex-end;
 }
 
 .stats-label {
-  font-size: 0.8em;
+  font-size: 1.0em;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .stadium {
   text-align: center;
+}
+
+.stats h2 {
+  font-size: 1.8em;
+}
+
+.team-details h3 {
+  font-size: 1.4em;
 }
 </style>
